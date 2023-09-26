@@ -4,30 +4,38 @@ BAD_OPER = 'bad_oper'
 OPERATORS = '+-*/'
 
 
-def take_input():
-    calc = input('Enter an equation\n')
+def process_input() -> str:
+    calc = input()
     x, oper, y = calc.split()
 
     try:
         float(x)
         float(y)
     except ValueError:
-        print('Do you even know what numbers are? Stay focused!')
         return BAD_NUMBER
 
     if oper not in OPERATORS:
         # split in two lines to comply with PEP 8
-        print("Yes ... an interesting math operation. "
-              "You've slept through all classes, haven't you?")
         return BAD_OPER
 
     return OK
 
 
-def ui_loop():
+def ui_loop() -> None:
     while True:
-        input_ = take_input()
-
+        print('Enter an equation')
+        control = process_input()
+        if control == BAD_NUMBER:
+            print('Do you even know what numbers are? Stay focused!')
+            continue
+        elif control == BAD_OPER:
+            print("Yes ... an interesting math operation. "
+                  "You've slept through all classes, haven't you?")
+            continue
+        elif control == OK:
+            return
+        else:
+            raise ValueError(f"Invalid control '{control}'")
 
 
 def main():
