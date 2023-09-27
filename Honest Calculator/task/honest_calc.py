@@ -57,7 +57,7 @@ def remember() -> bool:
 
 
 def calculator() -> None:
-    memory: float = 0  # Apparently it has to be a float.
+    memory: float = 0.0  # Apparently it has to be a float.
     while True:
         equation = input('Enter an equation\n')
         x, oper, y = equation.split()
