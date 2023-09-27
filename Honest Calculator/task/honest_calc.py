@@ -3,14 +3,23 @@ M = 'M'
 Y, N = 'y', 'n'
 
 
-def is_allowed(s: str) -> bool:
-    if s in ALLOWED_OPERATORS:
+def is_allowed(oper: str) -> bool:
+    """Return True if s is one of the allowed operators."""
+    if len(oper) != 1:
+        raise ValueError('Bad operator. It has to be ONE of the '
+                         f'following math operators: {ALLOWED_OPERATORS}')
+
+    if oper in ALLOWED_OPERATORS:
         return True
     else:
         return False
 
 
 def is_number(s: str) -> bool:
+    """Return True if s can be cast to float.
+
+    If not, return False.
+    """
     try:
         float(s)
     except ValueError:
@@ -20,6 +29,10 @@ def is_number(s: str) -> bool:
 
 
 def calculate(x: float, y: float, oper: str) -> float:
+    """Return result of equation 'x oper y'.
+
+    If oper is not a valid operator, raise ValueError
+    """
     match oper:
         case '+':
             return x + y
@@ -35,6 +48,10 @@ def calculate(x: float, y: float, oper: str) -> float:
 
 
 def keep_going() -> bool:
+    """Return True if user wants to keep using the calculator.
+
+    If not, return False.
+    """
     while True:
         answer = input('Do you want to continue calculations? (y / n):\n')
         if answer == Y:
@@ -46,6 +63,10 @@ def keep_going() -> bool:
 
 
 def remember() -> bool:
+    """Return True if user wants to store the result.
+
+    If not, return False.
+    """
     while True:
         answer = input('Do you want to store the result? (y / n):\n')
         if answer == Y:
@@ -57,6 +78,8 @@ def remember() -> bool:
 
 
 def is_one_digit(x) -> bool:
+    """Return True if x is a one digit int, or False if it isn't.
+    """
     if -10 < x < 10 and x.is_integer():
         return True
     else:
@@ -64,6 +87,7 @@ def is_one_digit(x) -> bool:
 
 
 def check(x, y, oper):
+    """Check if the user is a lazy little sloth."""
     msg = ''
 
     if is_one_digit(x) and is_one_digit(y):
@@ -78,6 +102,7 @@ def check(x, y, oper):
 
 
 def calculator() -> None:
+    """Run a sassy, if extremely rudimentary calculator."""
     memory: float = 0.0  # Apparently it has to be a float.
     while True:
         equation = input('Enter an equation\n')
