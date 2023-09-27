@@ -22,13 +22,13 @@ def is_number(s: str) -> bool:
 def calculate(x: float, y: float, oper: str) -> float:
     match oper:
         case '+':
-            return x+y
+            return x + y
         case '-':
-            return x-y
+            return x - y
         case '*':
-            return x*y
+            return x * y
         case '/':
-            return x/y
+            return x / y
         case _:
             raise ValueError(f"Wrong operator! '{oper}' "
                              f"not in '{ALLOWED_OPERATORS}'")
@@ -56,6 +56,27 @@ def remember() -> bool:
             continue
 
 
+def is_one_digit(x) -> bool:
+    if -10 < x < 10 and x.is_integer():
+        return True
+    else:
+        return False
+
+
+def check(x, y, oper):
+    msg = ''
+
+    if is_one_digit(x) and is_one_digit(y):
+        msg += ' ... lazy'
+    if x == 1 or y == 1:
+        msg += ' ... very lazy'
+    if (x == 0 or y == 0) and oper in '*+-':
+        msg += ' ... very, very lazy'
+
+    if msg:
+        print(f'You are{msg}')
+
+
 def calculator() -> None:
     memory: float = 0.0  # Apparently it has to be a float.
     while True:
@@ -77,6 +98,8 @@ def calculator() -> None:
             print("Yes ... an interesting math operation. "
                   "You've slept through all classes, haven't you?")
             continue
+
+        check(x, y, oper)
 
         try:
             result = calculate(x, y, oper)
