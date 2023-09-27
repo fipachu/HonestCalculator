@@ -67,5 +67,8 @@ files:
       if __name__ == '__main__':    HonestCalc().run_tests()
     learner_created: false
 feedback_link: https://hyperskill.org/learn/step/15812#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Wed, 27 Sep 2023 11:31:25 UTC"
 record: 3
