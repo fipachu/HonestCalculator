@@ -32,15 +32,6 @@ def calculate(x: float, y: float, oper: str) -> float:
         case _:
             raise ValueError(f"Wrong operator! '{oper}' "
                              f"not in '{ALLOWED_OPERATORS}'")
-    # # Alternatively, against the spirit of the exercise:
-    # for op in ALLOWED_OPERATORS:
-    #     if op == oper:
-    #         return eval(f'{x}{op}{y}')
-    # else:
-    #     raise ValueError(f"Wrong operator! '{oper}' "
-    #                      f"not in '{ALLOWED_OPERATORS}'")
-    # # I wonder if there is a way to allow for using
-    # # user defined lists of operators without using eval()
 
 
 def keep_going() -> bool:
