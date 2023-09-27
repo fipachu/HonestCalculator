@@ -86,8 +86,11 @@ def is_one_digit(x) -> bool:
         return False
 
 
-def check(x, y, oper):
-    """Check if the user is a lazy little sloth."""
+def check(x, y, oper) -> None:
+    """Check if the user is a lazy little sloth.
+
+    Shame the user if they are.
+    """
     msg = ''
 
     if is_one_digit(x) and is_one_digit(y):
@@ -99,6 +102,36 @@ def check(x, y, oper):
 
     if msg:
         print(f'You are{msg}')
+
+
+def really_remember(result: float) -> bool:
+    """Return True if the result is clearly worth remembering.
+
+    If it isn't, attempt to coerce the user into discarding the result.
+
+    If after three (3) coercion attempts the user proves persistent,
+    return True.
+
+    If coercion proves successful, return False.
+    """
+    # TODO: decide how to implement this function and write it up
+    if is_one_digit(result):
+
+        coercion_attempts = 3
+
+        answer = input('Are you sure? It is only one digit! (y / n)\n')
+        coercion_attempts -= 1
+
+        if answer == Y:
+            answer = input("Don't be silly! It's just one number! Add to the memory? (y / n)\n")
+
+            if answer == Y:
+                answer = input('Last chance! Do you really want to embarrass yourself? (y / n)\n')
+
+                if answer == Y:
+                    return True
+    else:
+        return False
 
 
 def calculator() -> None:
@@ -133,7 +166,7 @@ def calculator() -> None:
             continue
         print(result)
 
-        if remember():
+        if remember() and really_remember(result):
             memory = result
 
         if keep_going():
