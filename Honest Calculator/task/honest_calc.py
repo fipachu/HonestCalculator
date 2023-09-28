@@ -120,6 +120,7 @@ def really_remember(result: float) -> bool:
         "Don't be silly! It's just one number! Add to the memory? (y / n)\n",
         'Last chance! Do you really want to embarrass yourself? (y / n)\n'
     )
+
     if not is_one_digit(result):
         return True
 
