@@ -114,22 +114,20 @@ def really_remember(result: float) -> bool:
 
     If coercion proves successful, return False.
     """
-    # This code is almost begging for 'for c in coercion: ...'
-    coercion = (
+    # Is looping over coercions a better idea?
+    coercions = (
         'Are you sure? It is only one digit! (y / n)\n',
         "Don't be silly! It's just one number! Add to the memory? (y / n)\n",
         'Last chance! Do you really want to embarrass yourself? (y / n)\n'
     )
     if not is_one_digit(result):
         return True
-    elif (
-          input(coercion[0]) == Y
-          and input(coercion[1]) == Y
-          and input(coercion[2]) == Y
-          ):
-        return True
+
+    for coercion in coercions:
+        if input(coercion) == N:
+            return False
     else:
-        return False
+        return True
 
 
 def calculator() -> None:
