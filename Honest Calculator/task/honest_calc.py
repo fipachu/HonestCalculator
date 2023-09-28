@@ -114,14 +114,18 @@ def really_remember(result: float) -> bool:
 
     If coercion proves successful, return False.
     """
-    # I'm not quite sure if I like this implementation or not.
-    # I don't like the way it is done in the flowchart though.
+    # This code is almost begging for 'for c in coercion: ...'
+    coercion = (
+        'Are you sure? It is only one digit! (y / n)\n',
+        "Don't be silly! It's just one number! Add to the memory? (y / n)\n",
+        'Last chance! Do you really want to embarrass yourself? (y / n)\n'
+    )
     if not is_one_digit(result):
         return True
     elif (
-          input('Are you sure? It is only one digit! (y / n)\n') == Y
-          and input("Don't be silly! It's just one number! Add to the memory? (y / n)\n") == Y
-          and input('Last chance! Do you really want to embarrass yourself? (y / n)\n') == Y
+          input(coercion[0]) == Y
+          and input(coercion[1]) == Y
+          and input(coercion[2]) == Y
           ):
         return True
     else:
